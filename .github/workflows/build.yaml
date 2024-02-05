@@ -1,0 +1,86 @@
+name: Build and test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@main
+      with:
+        channel: stable
+        cache: true
+    - run: flutter --version
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build apk
+
+  ios:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@main
+      with:
+        channel: stable
+        cache: true
+    - run: flutter --version
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build ios --no-codesign
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@main
+      with:
+        channel: stable
+        cache: true
+    - run: flutter --version
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build web
+  
+  windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@main
+      with:
+        channel: stable
+        cache: true
+    - run: flutter --version
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build windows
+  
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@main
+      with:
+        channel: stable
+        cache: true
+    - run: flutter --version
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build linux
+  
+  macos:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@main
+      with:
+        channel: stable
+        cache: true
+    - run: flutter --version
+    - run: flutter pub get
+    - run: flutter test
+    - run: flutter build macos
+
